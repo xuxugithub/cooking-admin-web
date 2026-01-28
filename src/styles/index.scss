@@ -1,0 +1,107 @@
+// 全局样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+// 布局样式
+.layout-container {
+  height: 100vh;
+  
+  .layout-header {
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #409eff;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  
+  .layout-aside {
+    background: #304156;
+    
+    .el-menu {
+      border-right: none;
+    }
+  }
+  
+  .layout-main {
+    background: #f0f2f5;
+    padding: 20px;
+    overflow-y: auto;
+  }
+}
+
+// 页面内容样式
+.page-container {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  min-height: calc(100vh - 120px);
+}
+
+// 表格操作按钮
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+// 搜索表单
+.search-form {
+  margin-bottom: 20px;
+  
+  .el-form-item {
+    margin-bottom: 0;
+  }
+}
+
+// 登录页面样式
+.login-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .login-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    
+    .login-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+      color: #333;
+    }
+    
+    .el-form-item {
+      margin-bottom: 20px;
+    }
+    
+    .login-button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+}
