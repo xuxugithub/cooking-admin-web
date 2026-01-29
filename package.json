@@ -1,7 +1,7 @@
 {
   "name": "cooking-admin-web",
   "version": "1.0.0",
-  "description": "做菜小程序后台管理系统前端",
+  "description": "厨小教程序后台管理系统前端",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
