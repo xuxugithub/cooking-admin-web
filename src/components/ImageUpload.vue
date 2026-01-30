@@ -73,7 +73,7 @@ const previewUrl = computed(() => {
     return uploadedFile.value.blobUrl
   } else if (fileName.value) {
     // 已存在的文件，使用预览接口
-    return `/admin/file/preview/${fileName.value}`
+    return `/api/admin/file/preview/${fileName.value}`
   }
   return ''
 })
