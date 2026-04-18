@@ -39,6 +39,12 @@ const routes = [
         meta: { title: 'Banner管理' }
       },
       {
+        path: 'feedback',
+        name: 'Feedback',
+        component: () => import('@/views/Feedback.vue'),
+        meta: { title: '用户反馈' }
+      },
+      {
         path: 'profile',
         name: 'Profile',
         component: () => import('@/views/Profile.vue'),
