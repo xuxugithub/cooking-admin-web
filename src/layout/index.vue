@@ -92,7 +92,7 @@ const handleCommand = async (command) => {
         cancelButtonText: '取消',
         type: 'warning'
       })
-      
+
       authStore.logout()
       router.push('/login')
     } catch {

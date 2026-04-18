@@ -1,6 +1,15 @@
 import request from '@/utils/request'
 
-// 管理员登录
+// 发送登录验证码
+export const sendCode = (email) => {
+  return request({
+    url: '/send-code',
+    method: 'post',
+    data: { email }
+  })
+}
+
+// 管理员登录（邮箱 + 密码 + 验证码）
 export const login = (data) => {
   return request({
     url: '/login',

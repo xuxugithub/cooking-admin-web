@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <h2 style="margin-bottom: 20px;">仪表盘</h2>
-    
+
     <!-- 统计卡片 -->
     <el-row :gutter="20" style="margin-bottom: 20px;">
       <el-col :span="6">
@@ -169,8 +169,8 @@
                 <span class="category-count">{{ category.dishCount || 0 }} 个菜品</span>
               </div>
               <div class="category-progress">
-                <el-progress 
-                  :percentage="getCategoryPercentage(category.dishCount || 0)" 
+                <el-progress
+                  :percentage="getCategoryPercentage(category.dishCount || 0)"
                   :show-text="false"
                   :stroke-width="8"
                 />
@@ -209,7 +209,7 @@ const formatTime = (timeStr) => {
   const date = new Date(timeStr)
   const now = new Date()
   const diff = now - date
-  
+
   if (diff < 60000) { // 1分钟内
     return '刚刚'
   } else if (diff < 3600000) { // 1小时内
@@ -250,12 +250,12 @@ const loadStats = async () => {
     const dishRes = await getDishPage({ current: 1, size: 1000 })
     if (dishRes.code === 200) {
       stats.value.dishCount = dishRes.data.total
-      
+
       // 获取最近添加的菜品（前5个）
       recentDishes.value = dishRes.data.records
         .sort((a, b) => new Date(b.createTime) - new Date(a.createTime))
         .slice(0, 5)
-      
+
       // 计算每个分类的菜品数量
       const categoryDishCount = {}
       dishRes.data.records.forEach(dish => {
@@ -263,13 +263,13 @@ const loadStats = async () => {
           categoryDishCount[dish.categoryId] = (categoryDishCount[dish.categoryId] || 0) + 1
         }
       })
-      
+
       // 更新分类统计
       categoryStats.value = categoryStats.value.map(category => ({
         ...category,
         dishCount: categoryDishCount[category.id] || 0
       }))
-      
+
       // 计算总浏览量
       stats.value.totalViews = dishRes.data.records.reduce((total, dish) => {
         return total + (dish.viewCount || 0)
@@ -278,7 +278,7 @@ const loadStats = async () => {
 
     // 更新最后更新时间
     lastUpdateTime.value = new Date().toLocaleString()
-    
+
   } catch (error) {
     console.error('加载统计数据失败:', error)
     ElMessage.error('加载统计数据失败')
@@ -302,7 +302,7 @@ onMounted(() => {
   .stat-content {
     display: flex;
     align-items: center;
-    
+
     .stat-icon {
       width: 60px;
       height: 60px;
@@ -313,7 +313,7 @@ onMounted(() => {
       color: white;
       margin-right: 16px;
     }
-    
+
     .stat-info {
       .stat-number {
         font-size: 24px;
@@ -321,7 +321,7 @@ onMounted(() => {
         color: #333;
         line-height: 1;
       }
-      
+
       .stat-label {
         font-size: 14px;
         color: #666;
@@ -342,7 +342,7 @@ onMounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  
+
   .action-btn {
     flex: 1;
     min-width: 120px;
@@ -356,16 +356,16 @@ onMounted(() => {
     align-items: center;
     padding: 8px 0;
     border-bottom: 1px solid #f0f0f0;
-    
+
     &:last-child {
       border-bottom: none;
     }
-    
+
     .info-label {
       color: #666;
       font-size: 14px;
     }
-    
+
     .info-value {
       color: #333;
       font-weight: 500;
@@ -378,36 +378,36 @@ onMounted(() => {
   align-items: center;
   padding: 12px 0;
   border-bottom: 1px solid #f0f0f0;
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   .item-image {
     margin-right: 12px;
   }
-  
+
   .item-info {
     flex: 1;
-    
+
     .item-name {
       font-weight: 500;
       color: #333;
       margin-bottom: 4px;
     }
-    
+
     .item-meta {
       display: flex;
       align-items: center;
       gap: 8px;
-      
+
       .item-time {
         font-size: 12px;
         color: #999;
       }
     }
   }
-  
+
   .item-actions {
     margin-left: 12px;
   }
@@ -416,28 +416,28 @@ onMounted(() => {
 .category-stat {
   padding: 12px 0;
   border-bottom: 1px solid #f0f0f0;
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   .category-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
-    
+
     .category-name {
       font-weight: 500;
       color: #333;
     }
-    
+
     .category-count {
       font-size: 12px;
       color: #666;
     }
   }
-  
+
   .category-progress {
     width: 100%;
   }

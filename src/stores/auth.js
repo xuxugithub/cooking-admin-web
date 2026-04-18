@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { login as apiLogin, getAdminInfo } from '@/api/auth'
+import { login as apiLogin, sendCode as apiSendCode, getAdminInfo } from '@/api/auth'
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('admin_token') || '')
@@ -8,7 +8,21 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isLoggedIn = computed(() => !!token.value)
 
-  // 登录
+  // 发送验证码
+  const sendCode = async (email) => {
+    try {
+      const response = await apiSendCode(email)
+      if (response.code === 200) {
+        return { success: true, message: response.data }
+      } else {
+        return { success: false, message: response.message }
+      }
+    } catch (error) {
+      return { success: false, message: error.message || '发送验证码失败' }
+    }
+  }
+
+  // 登录（邮箱 + 密码 + 验证码）
   const login = async (credentials) => {
     try {
       const response = await apiLogin(credentials)
@@ -52,6 +66,7 @@ export const useAuthStore = defineStore('auth', () => {
     token,
     adminInfo,
     isLoggedIn,
+    sendCode,
     login,
     fetchAdminInfo,
     logout
