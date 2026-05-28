@@ -29,17 +29,6 @@
           </el-button>
         </el-form-item>
 
-        <el-form-item prop="password">
-          <el-input
-            v-model="loginForm.password"
-            type="password"
-            placeholder="请输入密码"
-            size="large"
-            prefix-icon="Lock"
-            show-password
-          />
-        </el-form-item>
-
         <el-form-item prop="code">
           <el-input
             v-model="loginForm.code"
@@ -63,7 +52,7 @@
         </el-form-item>
       </el-form>
       <div class="login-tip">
-        请先发送验证码，然后输入密码和验证码登录
+        请先发送验证码，然后输入验证码登录
       </div>
     </div>
   </div>
@@ -88,7 +77,6 @@ let countdownTimer = null
 
 const loginForm = reactive({
   email: '',
-  password: '',
   code: ''
 })
 
@@ -96,10 +84,6 @@ const loginRules = {
   email: [
     { required: true, message: '请输入邮箱', trigger: 'blur' },
     { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' }
-  ],
-  password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, message: '密码长度不能少于6位', trigger: 'blur' }
   ],
   code: [
     { required: true, message: '请输入验证码', trigger: 'blur' },
